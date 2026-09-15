@@ -1,0 +1,92 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DeriveFactor {
+}
+
+class ExpFactor {
+}
+
+class Expr {
+}
+
+interface Factor {
+}
+
+class FuncFactor {
+}
+
+class Mono {
+}
+
+class Num {
+}
+
+class Poly {
+}
+
+class PowerFactor {
+}
+
+class SelectFactor {
+}
+
+class Term {
+}
+
+class Var {
+}
+
+class FuncManager {
+}
+
+class Lexer {
+}
+
+class MainClass {
+}
+
+class Parser {
+}
+
+class Processor {
+}
+
+class StrPolyExchanger {
+}
+
+Processor ..> MainClass
+Processor ..> StrPolyExchanger
+Processor ..> FuncManager
+StrPolyExchanger ..> MainClass
+StrPolyExchanger ..> FuncFactor
+StrPolyExchanger <..> FuncManager
+Expr ..> Parser
+Parser ..> StrPolyExchanger
+
+'implements
+Factor <|.. DeriveFactor
+Factor <|.. ExpFactor
+Factor <|.. FuncFactor
+Factor <|.. Num
+Factor <|.. PowerFactor
+Factor <|.. SelectFactor
+Factor <|.. Term
+Factor <|.. Expr
+Factor <|.. Var
+
+Term o-- Factor
+Expr o-- Term
+
+Parser *-- Lexer
+
+Expr ..> Mono
+Term ..> Mono
+Factor ..> Mono
+Mono --o Poly
+Poly ..> StrPolyExchanger
+
+PowerFactor --o Mono
+ExpFactor --o Mono
+
+@enduml
